@@ -9,9 +9,9 @@
     "author": "ArtemSkok",
     "license": "ISC",
     "dependencies": {
-        "color-convert": "^1.9.3",
         "get-pixels": "^3.3.2",
         "ndarray": "^1.0.18",
+        "save-pixels": "^2.3.4",
         "sharp": "^0.21.0"
     }
 }
