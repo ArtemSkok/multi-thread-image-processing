@@ -21,13 +21,26 @@ getPixels('./public/src-images/distorted.png', 'image/png', (err, pixels) => {
             matrixX = pixels.shape[1],
             channels = pixels.shape[2];
 
+        const n = 5;
+
         for (let y = 0; y < matrixY; y++) {
             for (let x = 0; x < matrixX; x++) {
-                for (let z = 0; z < channels; z++) {
-                    processedPixelsArr.set(y, x, z, pixels.get(y, x, z));
+                if (y > n && y < matrixY - n && x > n && x < matrixX - n) {
+                    for (let z = 0; z < channels; z++) {
+                        debugger;
+                        var valueSum = 0;
+                        for (let i = y - n; i <= y + n; i++) {
+                            for (let j = x - n; j <= x + n; j++) {
+                                valueSum += pixels.get(i, j, z);
+                            }
+                        }
+                        processedPixelsArr.set(y, x, z, valueSum / ((2 * n + 1) * (2 * n + 1)));
+                      
+                    }
                 }
             }
         }
+
         const buffer = fs.createWriteStream(
             './public/processed-images/res.png'
         );
